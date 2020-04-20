@@ -34,7 +34,7 @@ public class OhjelmaSwing {
 	 */
 	public OhjelmaSwing() {
 		try {
-			rekisteri = new Tulosrekisteri("joukkueet.DAT", "kaudet.DAT");
+			rekisteri = new Tulosrekisteri("/joukkueet.DAT", "/kaudet.DAT");
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
@@ -126,7 +126,7 @@ public class OhjelmaSwing {
 						JOptionPane.showMessageDialog(null, "Muutokset joukkuetietoihin tallennettu mutta kausitietoja ei\n  -> Korjaa kausitiedot (vain tekstiä ja oikeita ID:tä)");
 					}
 				}
-				rekisteri.talleta("joukkueet.DAT", "kaudet.DAT");
+				rekisteri.talleta("/joukkueet.DAT", "/kaudet.DAT");
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Tietokantaan tallentaminen epäonnistui");
 			}		 			
@@ -243,13 +243,21 @@ public class OhjelmaSwing {
 	 * Avaa ohjeita tiedoston selaimessa
 	 */
 	public void ohjeita() {
-		try {
-			File file = new File("res/ohjeita.html");
-			URI uri = file.toURI();
+		
+		try {			
+			//File file = new File("ohjeita.html");
+			//URI uri = file.toURI();				
+			
+			String osoite = this.getClass().getResource("/ohjeita.html").getFile();
+			URI uri = new URI("file:" + osoite);
 			uri.normalize();
-			Desktop.getDesktop().browse(uri);			
+			Desktop.getDesktop().browse(uri);
+			
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, e);
+		} catch (URISyntaxException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

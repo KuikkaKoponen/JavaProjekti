@@ -37,9 +37,10 @@ public class Kaudet{
 			//f = new BufferedReader(new FileReader(file));
 			InputStream in = getClass().getResourceAsStream(tiedosto); 
 			f = new BufferedReader(new InputStreamReader(in));
+			
 	    } catch (NullPointerException ex) {
 	    	throw new IOException(tiedosto + "-tiedoston avaaminen ei onnistu");
-	    }	    
+	    }
 	    try {
 	      String rivi;  
 	      while ( ( rivi = f.readLine() ) != null ) {

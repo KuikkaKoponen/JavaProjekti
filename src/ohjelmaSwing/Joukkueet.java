@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+
 /**
  * Luokka jossa pidetään yllä eri joukkueita
  * @author Ville
@@ -54,10 +55,11 @@ public class Joukkueet{
 		
 		BufferedReader f = null;
 		try {			
-			String file = this.getClass().getResource(tiedosto).getFile();
-			f = new BufferedReader(new FileReader(file)); 
-			//InputStream in = getClass().getResourceAsStream(tiedosto); 
-			//f = new BufferedReader(new InputStreamReader(in));
+			//String file = this.getClass().getResource(tiedosto).getFile();
+			//f = new BufferedReader(new FileReader(file)); 
+			InputStream in = getClass().getResourceAsStream(tiedosto); 
+			f = new BufferedReader(new InputStreamReader(in));
+			
 	    } catch (NullPointerException ex) {
 	    	throw new IOException(tiedosto + "-tiedoston avaaminen ei onnistu");
 	    }
@@ -92,7 +94,7 @@ public class Joukkueet{
 			f = new BufferedWriter(new FileWriter(file, false));	
 			//InputStream in = getClass().getResourceAsStream(tiedosto); 
 			//f = new BufferedReader(new InputStreamReader(in));
-			System.out.println("toimii");
+
 	    } catch (NullPointerException ex) {
 	    	throw new IOException("Tallennustiedoston avaaminen ei onnistu");
 	    }	    
